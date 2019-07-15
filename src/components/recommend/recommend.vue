@@ -19,6 +19,12 @@
 
 
 <script type="text/ecmascript-6">
+/**
+ * @param {{slider1:string}} data
+ *
+ *
+ *
+ */
     import {getRecommend} from '@/api/recommend'
     import {ERR_OK} from 'api/config'
 
@@ -33,6 +39,7 @@
             _getRecommend(){
                 getRecommend().then((res)=>{
                     if (res.code === ERR_OK){
+                        /** @namespace  data.slider **/
                        console.log(res.data.slider)
                     }
                 })
