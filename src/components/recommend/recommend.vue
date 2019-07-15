@@ -1,3 +1,8 @@
+/**
+ * @Description:
+ * @author Wai HoYu
+ * @date 2019/7/16 01:21
+*/
 <template>
     <div>
         <div class="recommend">

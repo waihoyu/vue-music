@@ -1,3 +1,9 @@
+/**
+ * @Description:
+ * @author Wai HoYu
+ * @date 2019/7/16 01:22
+*/
+
 <template>
     <div class="tab">
         <router-link tag="div" class="tab-item" to="/recommend">
