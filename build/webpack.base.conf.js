@@ -24,13 +24,14 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json','.stylus'],
+    // modules: ['src', 'src/components'].map(resolve),
     alias: {
         'common': resolve('src/common'),
         'components': resolve('src/components'),
         'src':  resolve('src'),
+        'api':  resolve('src/api'),
         'vue$': 'vue/dist/vue.esm.js',
         '@': resolve('src'),
-        '~': resolve('src'),
     }
   },
   module: {
