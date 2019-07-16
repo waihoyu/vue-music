@@ -1,7 +1,7 @@
 {
   "name": "vue-music",
   "version": "1.0.0",
-  "description": "chicken music",
+  "description": "Vue Music",
   "author": "WaiHoYu",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
   "dependencies": {
     "ansi-html": "0.0.7",
     "babel-runtime": "^6.26.0",
+    "better-scroll": "^1.15.2",
     "fastclick": "^1.0.6",
     "html-entities": "^1.2.1",
     "jsonp": "^0.2.1",
