@@ -61,6 +61,9 @@
                 currentPageIndex: 0
             }
         },
+        destroyed(){
+          clearInterval(this.timer)
+        },
         methods: {
             _setSliderWidth(isResize){
                 this.children = this.$refs.sliderGroup.children
