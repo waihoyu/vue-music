@@ -11,11 +11,11 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 var express = require('express')
 var axios = require('axios')
-
+var compression = require('compression')
 var app = express()
 var apiRoutes = express.Router()
 app.use('/api', apiRoutes)
-
+app.use(compression())
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -36,7 +36,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         },
         hot: true,
         contentBase: false, // since we use CopyWebpackPlugin.
-        compress: true,
+        compress: false,
         host: HOST || config.dev.host,
         port: PORT || config.dev.port,
         open: config.dev.autoOpenBrowser,
