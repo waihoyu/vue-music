@@ -69,7 +69,7 @@
                     if (res.code === ERR_OK){
                         /** @namespace  data.slider **/
                         this.recommends = res.data.slider
-                        console.log(this.recommends)
+                        // console.log(this.recommends)
                     }
                 }).then((err)=>{
                    console.log(err)
@@ -84,7 +84,7 @@
             },
             loadImage(){
                 if (!this.checkLoaded) {
-                   //this.$refs.scroll.refresh()
+                   this.$refs.scroll.refresh()
                     this.checkLoaded = true
                 }
             }
