@@ -7,23 +7,29 @@
 <template>
     <div>
         <div class="recommend" ref="recommend">
+
             <scroll ref="scroll" class="recommend-content" :data="discList">
+
                 <div>
+
                     <div  v-if="recommends.length" class="slider-wrapper">
+
                         <slider>
                             <div v-for="item in recommends"  >
                                 <a :href="item.linkUrl">
-                                    <img @load="loadImage"  :src="item.picUrl" alt="">
+                                    <img  class="needsclick" @load="loadImage"  :src="item.picUrl" alt="">
                                 </a>
                             </div>
                         </slider>
+
                     </div>
+
                     <div class="recommend-list">
                         <h1 class="list-title">热门歌单推荐</h1>
                         <ul>
                             <li v-for="item in discList" class="item">
                                 <div class="icon">
-                                    <img width="60" height="60" :src="item.imgurl">
+                                    <img width="60" height="60" v-lazy="item.imgurl">
                                 </div>
                                 <div class="text">
                                     <h2 class="name" v-html="item.creator.name"></h2>
@@ -32,6 +38,10 @@
                             </li>
                         </ul>
                     </div>
+
+                </div>
+                <div class="loading-container" v-show="!discList.length">
+                  <loading></loading>
                 </div>
             </scroll>
         </div>
@@ -44,7 +54,7 @@
      * @param {{slider1:string}} data
      *
      */
-
+    import Loading from 'base/loading/loading'
     import Slider from  'base/slider/slider'
     import Scroll from  'base/scroll/scroll'
     import {getRecommend,getDiscList} from '@/api/recommend'
@@ -67,9 +77,10 @@
             _getRecommend(){
                 getRecommend().then((res) => {
                     if (res.code === ERR_OK){
-                        /** @namespace  data.slider **/
+                        /**
+                        * @namespace  data.slider
+                        ***/
                         this.recommends = res.data.slider
-                        // console.log(this.recommends)
                     }
                 }).then((err)=>{
                    console.log(err)
@@ -94,7 +105,8 @@
         },
         components: {
             Slider,
-            Scroll
+            Scroll,
+            Loading
         }
     }
 </script>

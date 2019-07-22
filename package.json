@@ -20,7 +20,8 @@
     "loglevel": "^1.6.3",
     "strip-ansi": "^5.2.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.7"
+    "vue-router": "^3.0.7",
+    "vue-lazyload": "^1.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

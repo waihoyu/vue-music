@@ -5,8 +5,8 @@
 */
 <template>
     <div id="app">
-        <MHeard></MHeard>
-        <Tab></Tab>
+        <m-header></m-header>
+        <tab></tab>
         <keep-alive>
             <router-view>
             </router-view>
@@ -15,12 +15,12 @@
 </template>
 
 <script type="text/ecmascript-6">
-    import MHeard from '../src/components/m-header/m-header'
+    import MHeader from '../src/components/m-header/m-header'
     import Tab from '../src/components/tab/tab'
 
     export default {
         components: {
-            MHeard,
+            MHeader,
             Tab
         }
     }

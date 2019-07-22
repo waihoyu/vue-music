@@ -1,6 +1,13 @@
+/**
+ * @Description:
+ * @author Wai HoYu
+ * @date 2019/7/22 10:42
+*/
+
 <template>
     <div ref="wrapper">
-       <slot></slot>
+       <slot>
+       </slot>
     </div>
 </template>
 
