@@ -51,10 +51,6 @@ export function getDiscList() {
     return axios.get(url, {
         params: data
     }).then((res) => {
-        console.log(res.headers)
-        if (res.headers["content-encoding"] && res.headers['content-encoding'].indexOf('gzip') != -1) {
-            console.log(res.headers)
-        }
         return Promise.resolve(res.data)
     })
 }
