@@ -21,9 +21,12 @@ export function getSingerList() {
        platform: 'yqq',
        g_tk: 1664029744
     })
-
     return jsonp(url, data, options)
 }
 
+function f() {
+
+
+}
 
 
