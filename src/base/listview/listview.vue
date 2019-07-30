@@ -23,7 +23,11 @@
                 </ul>
             </li>
         </ul>
-        <div class="list-shortcut" @touchstart="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove" @touchend.stop>
+        <div    class="list-shortcut" 
+                @touchstart="onShortcutTouchStart" 
+                @touchmove.stop.prevent="onShortcutTouchMove" 
+                @touchend.stop
+        >
             <ul>
                 <li class="item" 
                     v-for="(item, index) in shortcutList" 
@@ -34,7 +38,7 @@
             </ul>
         </div>
         <div class="list-fixed" ref="fixed" v-show="fixedTitle">
-        <div class="fixed-title">{{fixedTitle}} </div>
+            <div class="fixed-title">{{fixedTitle}}</div>
         </div>
     </scroll>
 </template>
@@ -42,7 +46,7 @@
 <script type="text/ecmascript-6">
     import Scroll from "base/scroll/scroll";
     import {getData} from 'common/js/dom'
-
+    import Loading from "base/loading/loading"
     const ANCHOR_HEIGHT = 18
     const TITLE_HEIGHT = 30
 
@@ -119,7 +123,7 @@
             },
             fixedTitle() {
                 if (this.scrollY > 0) {
-                return ''
+                    return ''
                 }
                 return this.data[this.currentIndex] ? this.data[this.currentIndex].title : ''
             }
@@ -157,7 +161,8 @@
             }
         },
         components: {
-            Scroll
+            Scroll,
+            Loading
         },
         destroyed() {
 
@@ -219,9 +224,10 @@
             top 0
             left 0
             width 100%
+            background blue
             .fixed-title
                 height 30px
-                line-height 30
+                line-height 30px
                 padding-left 20px
                 font-size $font-size-small
                 color red
