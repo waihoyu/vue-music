@@ -54,11 +54,3 @@ export function getDiscList() {
         return Promise.resolve(res.data)
     })
 }
-
-
-
-
-
-
-
-
