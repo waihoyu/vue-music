@@ -40,13 +40,17 @@
         <div class="list-fixed" ref="fixed" v-show="fixedTitle">
             <div class="fixed-title">{{fixedTitle}}</div>
         </div>
+        <div class="loading-container" v-show="!data.length">
+            <loading></loading>
+        </div>
     </scroll>
 </template>
 
 <script type="text/ecmascript-6">
-    import Scroll from "base/scroll/scroll";
-    import {getData} from 'common/js/dom'
+    import Scroll from "base/scroll/scroll"
     import Loading from "base/loading/loading"
+    import {getData} from 'common/js/dom'
+
     const ANCHOR_HEIGHT = 18
     const TITLE_HEIGHT = 30
 
@@ -157,7 +161,7 @@
                     return
                 }
                 this.fixedTop = fixedTop
-                this.$refs.fixed.style.transform = `translate3d(0,${fixedTop}px,0)`
+                this.$refs.fixed.style.transform = `translate3d(0, ${fixedTop}px, 0)`
             }
         },
         components: {
@@ -232,9 +236,9 @@
                 font-size $font-size-small
                 color red
                 background $color-hightlight-background
-            .loading-container
-                position absolute
-                width 100%
-                top 50%
-                transform translateY(-50%)                 
+        .loading-container
+            position absolute
+            width 100%
+            top 50%
+            transform translateY(-50%)                 
 </style>
