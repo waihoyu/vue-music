@@ -3,7 +3,7 @@
  * @fileName: singer-detail.vue 
  * @author: Wai HoYu 
  * @date: 2019-07-31 15:41:37
- * @后台人员:  
+ * @后台人员:  Wai HoYu
  * @version: V1.0.5 
 !-->
                 
