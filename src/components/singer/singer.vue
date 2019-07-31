@@ -5,8 +5,9 @@
 */
 
 <template>
-    <div class="singer">
-       <list-view :data="singers"></list-view>
+    <div class="singer" ref="singer">
+       <list-view :data="singers" @select="selectSinger" ref="list"></list-view>
+       <router-view></router-view>
     </div>
 </template>
 
@@ -27,15 +28,19 @@
         },
         created(){
             this._getSingerList()
-
         },
         methods: {
+            selectSinger(singer){
+                this.$router.push({
+                    path: `/singer/${singer.id}`
+                })
+               
+            },
             _getSingerList(){
                 getSingerList().then((res)=>{
                     console.log(this.code)
                    if (res.code === ERR_OK){
                       this.singers = this._normalizeSinger(res.data.list)
-
                    }
                 })
             },
@@ -65,7 +70,6 @@
                       name: item.Fsinger_name
                   }))
                })
-               // console.log(map)
                //有序列表，需要处理map
                let hot = []
                let ret = []
@@ -78,7 +82,7 @@
                        hot.push(val)
                     }
                }
-               ret.sort((a, b)=>{ return a.title.charCodeAt(0) - b.title.charCodeAt(0)})
+               ret.sort((a, b) => { return a.title.charCodeAt(0) - b.title.charCodeAt(0)})
                return hot.concat(ret)
             }
         },

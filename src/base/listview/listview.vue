@@ -10,22 +10,27 @@
             ref = "listview" 
             :listenScroll = "listenScroll"
             :probeType = "probeType"
-            @scroll="scroll"
+            @scroll ="scroll"
     >
         <ul>
             <li v-for="(group, index) in data" class="list-group" v-bind:key="index" ref="listGroup">
                 <h2 class="list-group-title">{{group.title}}</h2>
                 <ul>
-                    <li v-for="(item, index) in group.items" class="list-group-item" v-bind:key="index">
+                    <li v-for="(item, index) in group.items" 
+                        class="list-group-item" 
+                        v-bind:key="index"
+                        @click="selectItem(item)"                                        
+                    >
                         <img v-lazy="item.avatar" alt class="avatar"/>
                         <span class="name">{{item.name}}</span>
                     </li>
                 </ul>
             </li>
         </ul>
+
         <div    class="list-shortcut" 
-                @touchstart="onShortcutTouchStart" 
-                @touchmove.stop.prevent="onShortcutTouchMove" 
+                @touchstart.stop="onShortcutTouchStart" 
+                @touchmove.stop="onShortcutTouchMove" 
                 @touchend.stop
         >
             <ul>
@@ -33,7 +38,7 @@
                     v-for="(item, index) in shortcutList" 
                     v-bind:key="index"  
                     :data-index="index"
-                    :class="{'current' : currentIndex === index}"
+                    :class="{'current' : currentIndex === index}"                   
                 >{{item}}</li>
             </ul>
         </div>
@@ -50,10 +55,10 @@
     import Scroll from "base/scroll/scroll"
     import Loading from "base/loading/loading"
     import {getData} from 'common/js/dom'
-
+    
     const ANCHOR_HEIGHT = 18
     const TITLE_HEIGHT = 30
-
+    
     export default {
         created(){
             this.touch = {}
@@ -75,7 +80,10 @@
             };
         },
         methods: {
-             onShortcutTouchStart(e,fasle){
+             selectItem(item){
+                this.$emit('select', item)
+             },
+             onShortcutTouchStart(e){
                 let anchorIndex = getData(e.target, 'index')
                 let firstTouch = e.touches[0]
                 this.touch.y1 = firstTouch.pageY
@@ -83,12 +91,12 @@
                 this.$refs.listview.scrollToElement(this.$refs.listGroup[anchorIndex],0)
                 this._scrollTo(anchorIndex)
              },
-             onShortcutTouchMove(e){                
+             onShortcutTouchMove(e){               
                 let firstTouch = e.touches[0]
                 this.touch.y2 = firstTouch.pageY
                 let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
                 let anchorIndex = parseInt(this.touch.anchorIndex) + delta
-                this._scrollTo(anchorIndex)               
+                this._scrollTo(anchorIndex,true)               
              },
              scroll(pos){
                     this.scrollY = pos.y
@@ -110,6 +118,9 @@
              _calculateHeight(){
                  this.listHeight = []
                  const list = this.$refs.listGroup
+                  if (list.length <=0){
+                      return    
+                  }
                  let height = 0
                  this.listHeight.push(height)
                  for (let i = 0;i < list.length; i++) {

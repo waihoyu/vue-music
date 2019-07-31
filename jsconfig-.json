@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "checkJs": true,
+        "paths": {
+          "@/*": ["src/*"],
+          "base": ["src/base"]      
+        }
+    },
+    "include": [
+        "./src/**/*",
+        "node_modules/lodash/*",
+        "node_modules"
+      ]
+}

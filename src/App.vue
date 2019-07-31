@@ -3,6 +3,7 @@
  * @author Wai HoYu
  * @date 2019/7/16 01:21
 */
+
 <template>
     <div id="app">
         <m-header></m-header>
@@ -17,7 +18,7 @@
 <script type="text/ecmascript-6">
     import MHeader from '../src/components/m-header/m-header'
     import Tab from '../src/components/tab/tab'
-
+    
     export default {
         components: {
             MHeader,
@@ -32,7 +33,6 @@
     #app {
         color: $color-theme
     }
-
 </style>
 
 
