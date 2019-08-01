@@ -10,33 +10,42 @@
  <!--  -->
  <template>
     <transition name="slide">
-         <div class='singer-detail'></div>
+        <music-list :songs="songs" :title="title" :bg-image="bgImage"></music-list>
     </transition>
  </template>
  
  <script  type="text/ecmascript-6">
         //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
         //例如：import 《组件名称》 from '《组件路径》';
-        import {mapGetters} from 'vuex'
-        import {getSingerDetail} from 'api/singer.js' 
-        import {ERR_OK} from 'api/config'
-        import {createSong} from 'common/js/song'                                              
-        export default {
-            data() {
+    import {mapGetters} from 'vuex'
+    import {getSingerDetail} from 'api/singer.js' 
+    import {ERR_OK} from 'api/config'
+    import {createSong} from 'common/js/song' 
+    import MusicList from 'components/music-list/music-list'
+
+    export default {
+        data() {
             //这里存放数据
             return { 
                   songs:[]   
                 };
             },
-            props: {
+        props: {
             //这里存放属性
-            },
+
+        },
          //import引入的组件需要注入到对象中才能使用
          components: {
-                
+            MusicList
          },
         //监听属性 类似于data概念
         computed: {
+            title() {
+                return this.singer.name
+            },
+            bgImage() {
+                return this.singer.avatar
+            },
             ...mapGetters([
                 'singer'
             ])  
