@@ -17,12 +17,15 @@
  <script  type="text/ecmascript-6">
         //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
         //例如：import 《组件名称》 from '《组件路径》';
-        import {mapGetters} from 'vuex'                                               
+        import {mapGetters} from 'vuex'
+        import {getSingerDetail} from 'api/singer.js' 
+        import {ERR_OK} from 'api/config'
+        import {createSong} from 'common/js/song'                                              
         export default {
             data() {
             //这里存放数据
             return { 
-                     
+                  songs:[]   
                 };
             },
             props: {
@@ -44,11 +47,33 @@
          },
         //方法集合
         methods: {
-                
+            _getDetail() {
+                if (!this.singer.id) {
+                        this.$router.push('/singer')
+                        return 
+                }
+                getSingerDetail(this.singer.id).then((res) => {
+                        if (res.code === ERR_OK){                               
+                                this.songs = this._normalizeSongs(res.data.list)
+                        }
+                        console.log(this.songs)
+                })
+            },
+            _normalizeSongs(list) {
+                let ret = []
+                list.forEach(item => {
+                    let {musicData} = item
+                    if (musicData.songid && musicData.albummid) {
+                        ret.push(createSong(musicData))    
+                    }
+                });
+                return ret
+            }          
         },
         //生命周期 - 创建完成（可以访问当前this实例）
         created() {
-            console.log(this.singer)    
+            console.log(this.singer)
+            this._getDetail()    
         },
         //生命周期 - 挂载完成（可以访问DOM元素）
         mounted() {
@@ -83,11 +108,12 @@
                         
         }
     }
-    </script>
-    <style scoped lang="stylus" rel="stylesheet/stylus">
+</script>
+<style scoped lang="stylus" rel="stylesheet/stylus">
         //@import url(); 引入公共css类
         @import '~common/stylus/base'
         @import '~common/stylus/variable'
+
         .singer-detail
             position fixed
             z-index 100
@@ -100,4 +126,4 @@
             transition all 0.3s
         .slider-enter, .slider-leave-to
             transform translate3d(100%, 0, 0)
-    </style>
+</style>
