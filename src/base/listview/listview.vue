@@ -19,7 +19,7 @@
                     <li v-for="(item, index) in group.items" 
                         class="list-group-item" 
                         v-bind:key="index"
-                        @click="selectItem(item)"                                        
+                        @click.stop.prevent="selectItem(item,{passive: false})"                                        
                     >
                         <img v-lazy="item.avatar" alt class="avatar"/>
                         <span class="name">{{item.name}}</span>
