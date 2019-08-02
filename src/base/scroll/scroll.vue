@@ -33,7 +33,9 @@
           }
         },
         data() {
-            return {}
+            return {
+
+            }
         },
         mounted(){
            setTimeout(()=>{
@@ -65,17 +67,15 @@
            refresh(){
               this.scroll && this.scroll.refresh()
            },
-           scrollTo(){
-               
+           scrollTo(){              
                this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
            },
            scrollToElement(){
-
                this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
            }
         },
         watch:{
-          data(){
+          data() {
             setTimeout(()=>{
                 this.refresh()
             },20)
@@ -88,11 +88,11 @@
 
         },
         destroyed() {
+
         }
     }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-
 
 </style>

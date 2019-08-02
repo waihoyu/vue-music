@@ -18,13 +18,21 @@
        <div class="bg-image" :style="bgStyle">
            <div class="filter"></div>
        </div>
+       <scroll :data="songs" class="list">
+           <div class="song-list-wrapper">
+               <song-list :songs= "songs">
+               </song-list>
+           </div>
+       </scroll>
    </div>
 </template>
 
 <script  type="text/ecmascript-6">
        //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
        //例如：import 《组件名称》 from '《组件路径》';
-                                                       
+       import Scroll from 'base/scroll/scroll'
+       import SongList from 'base/song-list/song-list'
+
        export default {
            data() {
            //这里存放数据
@@ -49,7 +57,8 @@
            },
         //import引入的组件需要注入到对象中才能使用
         components: {
-               
+            Scroll,
+            SongList
         },
        //监听属性 类似于data概念
        computed: {
@@ -173,21 +182,21 @@
                     width 100%
                     height 100%
                     background rgba(7, 17, 27, 0.4)
-                .bg-layer
-                    position relative
-                    height 100%
-                    background $color-background
-                .list
-                    position fixed
-                    top 0
-                    bottom 0
+            .bg-layer
+                position relative
+                height 100%
+                background $color-background
+            .list
+                position fixed
+                top 0
+                bottom 0
+                width 100%
+                background $color-background
+                .song-list-wrapper
+                    padding 20px 30px
+                .loading-container
+                    position absolute
                     width 100%
-                    background $color-background
-                    .song-list-wrapper
-                        padding 20px 30px
-                    .loading-container
-                        position absolute
-                        width 100%
-                        top 50%
-                        tranform translateY(-50%)        
+                    top 50%
+                    tranform translateY(-50%)        
    </style>
