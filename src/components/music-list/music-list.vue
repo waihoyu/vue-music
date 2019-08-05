@@ -10,15 +10,17 @@
 <!--  -->
 <template>
    <div class='music-list'>
-       <div class="back">
+       <div class="back" @click="back">
            <div class="icon-back"></div>
        </div>
        <h1 class="title" v-html="title">
        </h1>
-       <div class="bg-image" :style="bgStyle">
-           <div class="filter"></div>
+       <div class="bg-image" :style="bgStyle" ref="bgImage">
+           <div class="filter" ref="filter"></div>
        </div>
-       <scroll :data="songs" class="list">
+       <div class="bg-layer" ref="layer">
+       </div>
+       <scroll @scroll="scroll" :data="songs" class="list" ref="list" :probeType="probeType" :listen-scroll="listenScroll">
            <div class="song-list-wrapper">
                <song-list :songs= "songs">
                </song-list>
@@ -30,21 +32,26 @@
 <script  type="text/ecmascript-6">
        //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
        //例如：import 《组件名称》 from '《组件路径》';
-       import Scroll from 'base/scroll/scroll'
-       import SongList from 'base/song-list/song-list'
+        import Scroll from 'base/scroll/scroll'
+        import SongList from 'base/song-list/song-list'
+        import {prefixStyle} from 'common/js/dom.js'
+
+        const  RESERVED_HEIGHT = 40
+        const transform = prefixStyle('transform')
+        const backdrop = prefixStyle('backdrop-filter')
 
        export default {
            data() {
            //这里存放数据
            return { 
-                    
+                 scrollY: 0   
                };
            },
            props: {
            //这里存放属性
             bgImage: {
                 type: String,
-                default: ""
+                default: ''
             },
             songs: {
                 type: Array,
@@ -52,7 +59,7 @@
             },
             title:{
                 type: String,
-                default: ""
+                default: ''
             }
            },
         //import引入的组件需要注入到对象中才能使用
@@ -63,24 +70,61 @@
        //监听属性 类似于data概念
        computed: {
             bgStyle() {
-                return `background-image: url(${this.bgImage})`
+                return  `background-image: url(${this.bgImage})`
             }   
         },
        //监控data中的数据变化
        watch: {
-               
+           scrollY(newY) {
+               console.log(newY)
+                let translateY = Math.max(this.minTranslateY, newY)
+                let zIndex = 0
+                let scale = 1
+                let blur = 0
+                this.$refs.layer.style[transform] = `translate3d(0, ${translateY}px, 0)`
+                // this.$refs.layer.style['webkitTransform'] = `translate3d(0, ${translateY}px, 0)`
+                const precent = Math.abs(newY / this.imageHeight)
+                if (newY > 0) {
+                       scale = 1 + precent   
+                       zIndex = 10
+                }else {
+                    blur = Math.min(20 * precent, 20)       
+                }
+                this.$refs.filter.style[backdrop] = `blur(${blur}px)`
+                // this.$refs.filter.style['webkitBackdrop-filter'] = `blur(${blur}px)`
+                if (newY < this.minTranslateY) {
+                    zIndex = 10
+                    this.$refs.bgImage.style.paddingTop = 0
+                    this.$refs.bgImage.style.height = `${RESERVED_HEIGHT}px`
+                }
+                else {
+                    this.$refs.bgImage.style.paddingTop = '70%'
+                    this.$refs.bgImage.style.height = 0
+                }
+                this.$refs.bgImage.style.zIndex = zIndex
+                this.$refs.bgImage.style[transform] = `scale(${scale})`
+                // this.$refs.bgImage.style['webkitTransform'] = `scale(${scale})`          
+           }    
         },
        //方法集合
        methods: {
-               
+           scroll(pos) {
+               this.scrollY = pos.y
+           },
+           back() {
+               this.$router.back()
+           }
        },
        //生命周期 - 创建完成（可以访问当前this实例）
        created() {
-               
+            this.probeType = 3
+            this.listenScroll = true        
        },
        //生命周期 - 挂载完成（可以访问DOM元素）
        mounted() {
-               
+            this.imageHeight = this.$refs.bgImage.clientHeight
+            this.minTranslateY = - this.imageHeight + RESERVED_HEIGHT
+            this.$refs.list.$el.style.top = `${this.imageHeight}px`     
        },
        //生命周期 - 创建之前
        beforeCreate() { 
