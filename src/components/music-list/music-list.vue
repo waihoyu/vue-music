@@ -28,8 +28,11 @@
        </div>
        <scroll @scroll="scroll" :data="songs" class="list" ref="list" :probeType="probeType" :listen-scroll="listenScroll">
            <div class="song-list-wrapper">
-               <song-list :songs= "songs">
+               <song-list :songs= "songs" @select="selectItem">
                </song-list>
+           </div>
+           <div class="loading-container" v-show="!songs.length">
+               <loading></loading>
            </div>
        </scroll>
    </div>
@@ -41,6 +44,8 @@
         import Scroll from 'base/scroll/scroll'
         import SongList from 'base/song-list/song-list'
         import {prefixStyle} from 'common/js/dom.js'
+        import Loading from 'base/loading/loading'
+        import {mapActions} from 'vuex'
 
         const  RESERVED_HEIGHT = 40
         const transform = prefixStyle('transform')
@@ -54,24 +59,25 @@
                };
            },
            props: {
-           //这里存放属性
-            bgImage: {
-                type: String,
-                default: ''
-            },
-            songs: {
-                type: Array,
-                default: []
-            },
-            title:{
-                type: String,
-                default: ''
-            }
+                //这里存放属性
+                bgImage: {
+                    type: String,
+                    default: ''
+                },
+                songs: {
+                    type: Array,
+                    default: []
+                },
+                title:{
+                    type: String,
+                    default: ''
+                }
            },
         //import引入的组件需要注入到对象中才能使用
         components: {
             Scroll,
-            SongList
+            SongList,
+            Loading
         },
        //监听属性 类似于data概念
        computed: {
@@ -121,7 +127,16 @@
            },
            back() {
                this.$router.back()
-           }
+           },
+           selectItem(item, index) {
+               this.selectPlay({
+                   list: this.songs,
+                   index: index
+               })
+           },
+           ...mapActions([
+             'selectPlay'  
+           ])
        },
        //生命周期 - 创建完成（可以访问当前this实例）
        created() {
