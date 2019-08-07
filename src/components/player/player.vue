@@ -6,16 +6,69 @@
  * @后台人员:  
  * @version: V1.0.5 
 !-->
-
-               
+         
 <!--  -->
     <template>
         <div class="player" v-show="playlist.length > 0">
             <div class="normal-player" v-show="fullScreen">
-                播放器
-            </div>
-            <div class="mini-player" v-show="!fullScreen">
+                <div class="background">
+                    <img :src="currentSong.image" alt="" width="100%" height="100%">
+                </div>
+                <div class="top">
+                    <div class="back" @click="back">
+                        <i class="icon-back">
 
+                        </i>
+                    </div>
+                    <h1 class="title" v-html="currentSong.name"></h1>
+                    <h2 class="subtitle" v-html="currentSong.singer"></h2>
+                </div>
+                <div class="middle">
+                    <div class="middle-l">
+                        <div class="cd-wrapper">
+                            <div class="cd">
+                                <img :src="currentSong.image" alt="" class="image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="operators">
+                        <div class="icon i-left">
+                            <i class="icon-sequence">                               
+                            </i>
+                        </div>
+                        <div class="icon i-left">
+                            <i class="icon-prev"></i>
+                        </div>
+                        <div class="icon i-center">
+                            <i class="icon-play"></i>
+                        </div>
+                        <div class="icon i-right">
+                            <i class="icon-next">
+
+                            </i>
+                        </div>
+                        <div class="icon i-right">
+                            <i class="icon icon-not-favorite">
+
+                            </i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mini-player" v-show="!fullScreen" @click="open">
+                <div class="icon">
+                    <img :src="currentSong.image" alt="" width="40" height="40">
+                </div>
+                <div class="text">
+                    <h2 class="name" v-html="currentSong.name"></h2>
+                    <p class="desc" v-html="currentSong.singer"></p>
+                </div>
+                <div class="control"></div>
+                <div class="control">
+                    <div class="icon-playlist"></div>
+                </div>
             </div>
         </div>
     </template>
@@ -23,7 +76,7 @@
     <script  type="text/ecmascript-6">
        //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
        //例如：import 《组件名称》 from '《组件路径》';
-       import {mapGetters} from 'vuex' 
+       import {mapGetters, mapMutations} from 'vuex' 
 
        export default {
            data() {
@@ -44,7 +97,8 @@
             computed: {
                 ...mapGetters([
                     'fullScreen',
-                    'playlist'
+                    'playlist',
+                    'currentSong'
                 ])    
                 },
             //监控data中的数据变化
@@ -53,7 +107,15 @@
                 },
             //方法集合
             methods: {
-                    
+                back() {
+                    this.setFullScreen(false)
+                },
+                open() {
+                     this.setFullScreen(true)   
+                },
+                ...mapMutations({
+                    setFullScreen: 'SET_FULL_SCREEN'
+                })   
             },
             //生命周期 - 创建完成（可以访问当前this实例）
             created() {

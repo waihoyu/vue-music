@@ -1,44 +1,44 @@
-<!-- 
- * @description: 
- * @fileName: music-list.vue 
- * @author: Wai HoYu 
- * @date: 2019-08-02 04:21:21
- * @后台人员:  
- * @version: V1.0.5 
-!-->
-       
-<!--  -->
-<template>
-   <div class='music-list'>
-       <div class="back" @click="back">
-           <div class="icon-back"></div>
-       </div>
-       <h1 class="title" v-html="title">
-       </h1>
-       <div class="bg-image" :style="bgStyle" ref="bgImage">
-           <div class="play-wrapper">
-               <div class="play" v-show="songs.length > 0" ref="playBtn">
-                   <i class="icon-play"></i>
-                   <span class="text">随机播放全部</span>
-               </div>
-           </div>
-           <div class="filter" ref="filter"></div>
-       </div>
-       <div class="bg-layer" ref="layer">
-       </div>
-       <scroll @scroll="scroll" :data="songs" class="list" ref="list" :probeType="probeType" :listen-scroll="listenScroll">
-           <div class="song-list-wrapper">
-               <song-list :songs= "songs" @select="selectItem">
-               </song-list>
-           </div>
-           <div class="loading-container" v-show="!songs.length">
-               <loading></loading>
-           </div>
-       </scroll>
-   </div>
-</template>
+    <!-- 
+    * @description: 
+    * @fileName: music-list.vue 
+    * @author: Wai HoYu 
+    * @date: 2019-08-02 04:21:21
+    * @后台人员:  
+    * @version: V1.0.5 
+    !-->
+        
+    <!--  -->
+    <template>
+        <div class='music-list'>
+            <div class="back" @click="back">
+                <div class="icon-back"></div>
+            </div>
+            <h1 class="title" v-html="title">
+            </h1>
+            <div class="bg-image" :style="bgStyle" ref="bgImage">
+                <div class="play-wrapper">
+                    <div class="play" v-show="songs.length > 0" ref="playBtn">
+                        <i class="icon-play"></i>
+                        <span class="text">随机播放全部</span>
+                    </div>
+                </div>
+                <div class="filter" ref="filter"></div>
+            </div>
+            <div class="bg-layer" ref="layer">
+            </div>
+            <scroll @scroll="scroll" :data="songs" class="list" ref="list" :probeType="probeType" :listen-scroll="listenScroll">
+                <div class="song-list-wrapper">
+                    <song-list :songs= "songs" @select="selectItem">
+                    </song-list>
+                </div>
+                <div class="loading-container" v-show="!songs.length">
+                    <loading></loading>
+                </div>
+            </scroll>
+        </div>
+    </template>
 
-<script  type="text/ecmascript-6">
+    <script  type="text/ecmascript-6">
        //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
        //例如：import 《组件名称》 from '《组件路径》';
         import Scroll from 'base/scroll/scroll'
@@ -88,7 +88,6 @@
        //监控data中的数据变化
        watch: {
            scrollY(newY) {
-               console.log(newY)
                 let translateY = Math.max(this.minTranslateY, newY)
                 let zIndex = 0
                 let scale = 1

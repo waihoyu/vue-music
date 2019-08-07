@@ -38,7 +38,6 @@
         color: $color-theme
     }
 
-    
 </style>
 
 

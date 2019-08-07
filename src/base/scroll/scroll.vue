@@ -56,7 +56,7 @@
                     this.scroll.on('scroll',(pos) => {
                         me.$emit('scroll', pos)        
                     })     
-               }
+               } 
            },
            enable(){
               this.scroll && this.scroll.enable()
