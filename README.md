@@ -1,21 +1,15 @@
 # vue-music
 
-> chicken music
+# 使用Vue框架开发页面
 
-## Build Setup
+> 1、Vue的环境搭建和初始化
 
-``` bash
-# install dependencies
-npm install
+> 2、基于Vue框架的音乐APP页面开发
 
-# serve with hot reload at localhost:8080
-npm run dev
+> 3、es6 + html + css + npm + stylus + vue
 
-# build for production with minification
-npm run build
+> 4、Result Picture
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+![image](./src/assets/01.jpg)
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
