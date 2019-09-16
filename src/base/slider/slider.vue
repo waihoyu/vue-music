@@ -19,11 +19,9 @@
 
 <script type="text/ecmascript-6">
     import  {addClass} from "common/js/dom";
-    import  BScroll from 'better-scroll'
-
-
+    import  BScroll from 'better-scroll';
     export default {
-        props:{
+        props: {
             loop:{
                 type: Boolean,
                 default: true
@@ -36,7 +34,6 @@
                 type: Number,
                 default: 4000
             }
-
         },
         mounted(){
             setTimeout(() => {
@@ -47,7 +44,6 @@
                     this._play()
                 }
             },20)
-
             window.addEventListener('resize',()=>{
             if (!this.slider){
                   return
@@ -72,8 +68,8 @@
                 for (let i = 0; i < this.children.length; i++){
                     let child = this.children[i]
                     addClass(child,'slider-item')
-
                     child.style.width = sliderWidth + 'px'
+                    // child.style.height = 40 + 'px'
                     width += sliderWidth
                 }
                 if (this.loop && !isResize){
@@ -83,9 +79,8 @@
             },
             _initDots(){
                 this.dots = new Array(this.children.length)
-
             },
-            _initSlider(){
+            _initSlider() {
                 this.slider = new BScroll(this.$refs.slider, {
                     scrollX: true,
                     scrollY: false,
@@ -107,7 +102,6 @@
                         this._play()
                      }
                 })
-
             },
             _play(){
                 let pageIndex = this.currentPageIndex + 1
@@ -118,13 +112,10 @@
                      this.slider.goToPage(pageIndex, 0, 400)
                  },this.interval)
             }
-
         },
         computed: {
-
         },
         components: {
-
         }
     }
 </script>

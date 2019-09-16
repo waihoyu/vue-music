@@ -7,13 +7,9 @@
 <template>
     <div>
         <div class="recommend" ref="recommend">
-
             <scroll ref="scroll" class="recommend-content" :data="discList">
-
                 <div>
-
                     <div  v-if="recommends.length" class="slider-wrapper">
-
                         <slider>
                             <div v-for="item in recommends"  >
                                 <a :href="item.linkUrl">
@@ -21,9 +17,7 @@
                                 </a>
                             </div>
                         </slider>
-
                     </div>
-
                     <div class="recommend-list">
                         <h1 class="list-title">热门歌单推荐</h1>
                         <ul>
@@ -38,7 +32,6 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
                 <div class="loading-container" v-show="!discList.length">
                   <loading></loading>
@@ -54,27 +47,27 @@
      * @param {{slider1:string}} data
      *
      */
-    import Loading from 'base/loading/loading'
-    import Slider from  'base/slider/slider'
-    import Scroll from  'base/scroll/scroll'
+    import Loading  from 'base/loading/loading'
+    import Slider   from  'base/slider/slider'
+    import Scroll   from  'base/scroll/scroll'
     import {getRecommend,getDiscList} from '@/api/recommend'
     import {ERR_OK} from 'api/config'
 
     export default {
         data() {
             return {
-                recommends:[],
-                discList:[]
+                recommends: [],
+                discList: []
             }
         },
         created(){
             setTimeout(()=>{
                 this._getRecommend()
                 this._getDiscList()
-            },2000)
+            }, 2000)
         },
         methods: {
-            _getRecommend(){
+            _getRecommend() {
                 getRecommend().then((res) => {
                     if (res.code === ERR_OK){
                         /**
@@ -114,7 +107,6 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
     @import "~common/stylus/variable"
-
     .recommend
         left: 0
         position: fixed

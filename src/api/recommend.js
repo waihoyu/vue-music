@@ -35,7 +35,6 @@ export function getDiscList_() {
 
 export function getDiscList() {
     const url = '/api/getDiscList'
-
     const data = Object.assign({}, commonParams, {
         platform: 'yqq', // 加引号
         hostUin: 0,
@@ -47,7 +46,6 @@ export function getDiscList() {
         rnd: Math.random(),
         format: 'json'
     })
-
     return axios.get(url, {
         params: data
     }).then((res) => {

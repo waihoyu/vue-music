@@ -6,14 +6,12 @@
 
 <template>
     <div id="app">
-        <m-header></m-header>
-        <tab></tab>
+        <m-header/>
+        <tab/>
         <keep-alive>
-            <router-view>
-            </router-view>
+            <router-view/>
         </keep-alive>
-        <player >
-        </player>
+        <player/>
     </div>
 </template>
 

@@ -34,7 +34,6 @@
         },
         data() {
             return {
-
             }
         },
         mounted(){
@@ -94,5 +93,4 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-
 </style>
