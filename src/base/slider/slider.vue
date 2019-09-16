@@ -49,6 +49,7 @@
                   return
                 }
                 this._setSliderWidth(true)
+                this.slider.refresh();
             })
         },
         data() {
@@ -91,7 +92,7 @@
                     snapSpeed: 400,
                     // click: true
                 })
-                this.slider.on('scrollEnd', ()=>{
+                this.slider.on('scrollEnd', () => {
                     let pageIndex = this.slider.getCurrentPage().pageX
                      if (this.loop){
                         pageIndex -= 1

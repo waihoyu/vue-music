@@ -61,7 +61,7 @@
             }
         },
         created(){
-            setTimeout(()=>{
+            setTimeout(() => {
                 this._getRecommend()
                 this._getDiscList()
             }, 2000)
@@ -87,6 +87,7 @@
                 })
             },
             loadImage(){
+                //验证一次就行，多次会浪费
                 if (!this.checkLoaded) {
                    this.$refs.scroll.refresh()
                     this.checkLoaded = true
@@ -94,7 +95,6 @@
             }
         },
         computed: {
-
         },
         components: {
             Slider,

@@ -13,15 +13,13 @@
         props:{
             title:{
                 type: String,
-                default:'正在载入.....'
+                default: '正在载入.....'
             }
         },
         methods: {},
         computed: {},
         components: {},
-        destroyed() {
-
-        }
+        destroyed() {}
     }
 </script>
 
@@ -34,5 +32,4 @@
             line-height: 20px
             font-size: $font-size-small
             color $color-text-l
-
 </style>

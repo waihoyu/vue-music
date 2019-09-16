@@ -26,9 +26,10 @@ function param(data) {
     let url = ''
     for (var k in data) {
         let value = data[k] !== undefined ? data[k] : ''
-        url += `&${k} = ${encodeURIComponent(value)}`
+        url += `&${k}=${encodeURIComponent(value)}`
         // url += '&' + k + '=' + encodeURIComponent(value)
     }
     //这个地方会去掉一个&
+    console.log(url)
     return url ? url.substr(1) : ''
 }

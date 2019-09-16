@@ -77,17 +77,14 @@
           data() {
             setTimeout(()=>{
                 this.refresh()
-            },20)
+            }, 20)
           }
         },
         computed: {
-
         },
         components: {
-
         },
         destroyed() {
-
         }
     }
 </script>

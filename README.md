@@ -7,7 +7,7 @@
 
 > 2、基于Vue框架的音乐APP页面开发
 
-> 3、es6 + html + css + npm + stylus + vue +axios + jsonp
+> 3、es6 + html + css + npm + stylus + vue +axios + jsonp + vue-lazyload + fastclick
 
 > 4、Result Picture
 

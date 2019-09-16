@@ -5,7 +5,6 @@
 */
 
 export  function addClass(el, className) {
-
      if (hasClass(el, className)){
         return
      }
