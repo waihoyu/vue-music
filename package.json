@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "ansi-html": "0.0.7",
-    "axios": "^0.16.1",
+    "axios": "^0.18.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-runtime": "^6.26.0",
     "better-scroll": "^0.1.15",
